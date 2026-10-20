@@ -1,8 +1,6 @@
 # Parcial Practico: Sistema de Inventario y Ventas
 
 *Asignatura:* Desarrollo de Aplicaciones con Acceso a Datos  
-*tecnologias:* Python 3, SQLite 3  
-
 ---
 
 ## 1. Modelo de Datos y Entidades

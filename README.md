@@ -1,4 +1,4 @@
-# Parcial PrÃ¡ctico: Sistema de Inventario y Ventas
+# Parcial Practico: Sistema de Inventario y Ventas
 
 *Asignatura:* Desarrollo de Aplicaciones con Acceso a Datos  
 *TecnologÃ­as:* Python 3, SQLite 3  
@@ -7,7 +7,7 @@
 
 ## 1. Modelo de Datos y Entidades
 
-Se implementaron dos tablas vinculadas con clave forÃ¡nea e integridad referencial (ON DELETE RESTRICT):
+Se implementaron dos tablas vinculadas con clave foranea e integridad referencial (ON DELETE RESTRICT):
 
 sql
 CREATE TABLE productos (
@@ -29,7 +29,7 @@ CREATE TABLE ventas (
 
 ---
 
-## 2. Diagrama de Arquitectura e InteracciÃ³n
+## 2. Diagrama de Arquitectura e Interaccion
 
 text
 +-------------------------------------------------+
@@ -38,8 +38,8 @@ text
                          |
                          v
 +-------------------------------------------------+
-|         CAPA DE LÃ“GICA (inventario.py)          |
-|  - MenÃº interactivo y captura de datos          |
+|         CAPA DE LOGICA (inventario.py)          |
+|  - Menu interactivo y captura de datos          |
 |  - Validaciones de stock y consultas con (?)    |
 |  - Control transaccional (BEGIN, COMMIT, ROLL)  |
 +------------------------+------------------------+
@@ -54,24 +54,24 @@ text
 
 ---
 
-## 3. ExplicaciÃ³n de la TransacciÃ³n y Rollback
+## 3. Explicacion de la Transaccion y Rollback
 
 El registro de ventas cumple con la propiedad de *Atomicidad*:
-1. *ValidaciÃ³n:* Se comprueba existencia del producto y stock disponible.
-2. *InserciÃ³n de venta:* Se agrega el registro a la tabla ventas.
-3. *ActualizaciÃ³n de inventario:* Se descuenta la cantidad vendida en productos.
+1. *Validacion:* Se comprueba existencia del producto y stock disponible.
+2. *Insercionn de venta:* Se agrega el registro a la tabla ventas.
+3. *Actualizacion de inventario:* Se descuenta la cantidad vendida en productos.
 4. *Commit:* Si ambas operaciones concluyen sin error, se ejecuta conn.commit().
-5. *Rollback:* Si surge una falla entre la inserciÃ³n y la actualizaciÃ³n (probado en la opciÃ³n 7), se ejecuta de inmediato conn.rollback(), asegurando que no se guarden ventas incompletas ni se descuente el inventario.
+5. *Rollback:* Si surge una falla entre la insercion y la actualizacion (probado en la opcion 7), se ejecuta de inmediato conn.rollback(), asegurando que no se guarden ventas incompletas ni se descuente el inventario.
 
 ---
 
-## 4. Instrucciones de EjecuciÃ³n
+## 4. Instrucciones de Ejecucion
 
 1. Clonar el repositorio:
    bash
    git clone https://github.com/saryd/sistema-inventario-sqlite.git
    
-2. Ejecutar la aplicaciÃ³n en la terminal:
+2. Ejecutar la aplicacion en la terminal:
    bash
    python inventario.py
    
@@ -79,13 +79,5 @@ El registro de ventas cumple con la propiedad de *Atomicidad*:
 
 ---
 
-## 5. Evidencias de EjecuciÃ³n
+## 5. Evidencias de Ejecucion
 
-### 1. CreaciÃ³n y consulta de productos
-![Registro Productos](01_registro_productos.png)
-
-### 2. Venta exitosa e historial con JOIN
-![Venta Join](02_venta_exitosa_join.png)
-
-### 3. Prueba de fallo controlado y verificaciÃ³n con ROLLBACK
-![Prueba Rollback](03_prueba_rollback.png)
